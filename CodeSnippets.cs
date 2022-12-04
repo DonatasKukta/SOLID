@@ -71,3 +71,38 @@ namespace OpenClosedCodeSnippets
     }
   }
 }
+
+namespace LiskovSubstitutionCodeSnippets
+{
+  class CodeSnippet1
+  {
+    dynamic File;
+    dynamic Database;
+
+    interface ILogger { void Log(string message); }
+    class SqlLogger : ILogger
+    {
+      public void Log(string message)
+      { // What's wrong here?
+        Database.Execute($"INSERT INTO Logs VALUES({message})");
+      }
+    }
+    class FileLogger : ILogger
+    {
+      public void Log(string message)
+      {
+        File.Open();
+        File.Append(message);
+        File.Close();
+      }
+    }
+    class ConsoleLogger : ILogger
+    {
+      public void Log(string message)
+      {
+      }
+
+    }
+  }
+
+}
