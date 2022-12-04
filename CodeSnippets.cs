@@ -105,8 +105,6 @@ namespace LiskovSubstitutionCodeSnippets
     }
   }
 
-
-
   class CodeSnippet1
   {
     abstract class Bird
@@ -136,6 +134,83 @@ namespace LiskovSubstitutionCodeSnippets
     class Eagle : FlyingBird { }
     class Penguin : Bird { }
     class Ostrich : Bird { }
+  }
+}
 
+namespace InterfaceSegregationCodeSnippters
+{
+  class CodeSnippet1
+  {
+    interface IVehicle
+    {
+      void Drive();
+      void Fly();
+      void FillTank();
+      void Charge();
+    }
+
+    class Car : IVehicle
+    {
+      public void Drive()
+      {
+        // ...
+      }
+      public void FillTank()
+      {
+        // ...
+      }
+      public void Fly()
+      {
+        throw new InvalidOperationException("Car cannot fly");
+      }
+      public void Charge()
+      {
+        throw new InvalidOperationException("This car has fuel engine");
+      }
+    }
+    class Airplane : IVehicle
+    {
+      public void Drive()
+      {
+        throw new InvalidOperationException("Airplane cannot drive");
+      }
+      public void FillTank()
+      {
+        // ...
+      }
+      public void Fly()
+      {
+        // ...
+      }
+      public void Charge()
+      {
+        throw new InvalidOperationException("This airplane has fuel engine");
+      }
+    }
+  }
+
+  class CodeSnippet2
+  {
+    interface ICar
+    {
+      void Honk();
+      void Drive();
+    }
+    interface IAirplane
+    {
+      void Fly();
+    }
+    interface IFuelEngine
+    {
+      void FillTank();
+    }
+    interface IElectricEngine
+    {
+      void Charge();
+    }
+
+    class Airplane : IAirplane, IFuelEngine { }
+    class Car : ICar, IFuelEngine { }
+    class Tesla : ICar, IElectricEngine { }
   }
 }
