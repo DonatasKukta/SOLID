@@ -105,4 +105,37 @@ namespace LiskovSubstitutionCodeSnippets
     }
   }
 
+
+
+  class CodeSnippet1
+  {
+    abstract class Bird
+    {
+      public void LayEgg() { }
+      public void Fly() { }
+    }
+    class Duck : Bird { }
+    class Eagle : Bird { }
+    class Penguin : Bird { }
+    class Ostrich : Bird { }
+
+  }
+
+  class CodeSnippet2
+  {
+    abstract class Bird
+    {
+      public void LayEgg() { }
+    }
+    abstract class FlyingBird : Bird
+    {
+      public void Fly() { }
+    }
+
+    class Duck : FlyingBird { }
+    class Eagle : FlyingBird { }
+    class Penguin : Bird { }
+    class Ostrich : Bird { }
+
+  }
 }
